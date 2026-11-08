@@ -1,0 +1,12 @@
+services:
+  calendar:
+    build: .
+    image: my-calendar:latest
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - calendar-data:/app/data
+    mem_limit: 64m
+volumes:
+  calendar-data:

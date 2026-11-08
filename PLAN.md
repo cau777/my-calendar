@@ -181,6 +181,12 @@ so one of the above is needed anyway for the phone.
 
 ## 8. Decisions (2026-11-08)
 
+- Implementation deviations from the sketch above (to keep the container minimal):
+  `rusqlite` instead of `sqlx`, a hand-rolled ICS parser and RRULE subset instead of crates,
+  and a **no-build vanilla JS** PWA instead of Svelte/Vite. Offline reads use the
+  service worker's cache of API responses (no IndexedDB).
+- Deliverable is a Docker image (`FROM scratch`, static musl binary).
+
 - Week starts on **Sunday**.
 - Times display in the **phone's time zone** (`Intl` on the client; server stays UTC).
 - **Past-term courses stay visible** (they can still be hidden one at a time in Settings).
