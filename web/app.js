@@ -84,6 +84,7 @@ const dayDots = (list) => list.slice(0, 3).map((e) => `<i style="background:${e.
 function render() {
   document.querySelectorAll('#nav a').forEach((a) => a.classList.toggle('on', a.dataset.v === S.view));
   $('#fab').classList.toggle('hide', S.view === 'settings');
+  document.body.className = 'view-' + S.view;
   ({ agenda, month, week, settings })[S.view]();
 }
 
@@ -154,7 +155,10 @@ function month() {
   let h = '<div class="mgrid" id="swipe" style="padding:0 6px">' + ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((w) => `<div class="wd">${w}</div>`).join('');
   for (let d = gs; d < ge; d = addDays(d, 1)) {
     const cls = [d.getMonth() !== first.getMonth() && 'o', sameDay(d, today()) && 'today', sameDay(d, S.sel) && 'sel'].filter(Boolean).join(' ');
-    h += `<div class="mc ${cls}" data-day="${ymd(d)}"><span class="n">${d.getDate()}</span><span class="dots">${dayDots(eventsOn(events, d))}</span></div>`;
+    const dl = eventsOn(events, d);
+    const pills = dl.slice(0, 3).map((e) => `<button class="mp ${e.done ? 'done' : ''}" data-id="${e.id}" data-s="${e.start}" style="--c:${e.color}">${e.all_day ? '' : `<i>${fmtT(e._s).replace(':00', '')}</i>`}${esc(e.title)}</button>`).join('')
+      + (dl.length > 3 ? `<span class="mmore">+${dl.length - 3} more</span>` : '');
+    h += `<div class="mc ${cls}" data-day="${ymd(d)}"><span class="n">${d.getDate()}</span><span class="dots">${dayDots(dl)}</span><span class="mt">${pills}</span></div>`;
   }
   const list = eventsOn(events, S.sel);
   h += `</div><div class="selday pad">${dayHead(S.sel).replace('</span></div>', ` · ${list.length} item${list.length === 1 ? '' : 's'}</span></div>`)}
