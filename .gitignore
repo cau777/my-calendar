@@ -1,3 +1,18 @@
-/target
+# build output
+target/
 **/*.rs.bk
+node_modules/
+
+# local data: SQLite DB holds subscription URLs (with tokens)
+data/
+*.db
+*.db-shm
+*.db-wal
+
+# env / secrets
 .env
+.env.*
+
+# scratch
+/*.png
+.DS_Store

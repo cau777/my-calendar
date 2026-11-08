@@ -26,7 +26,7 @@ Designs: open `docs/designs/index.html` in a browser.
 > The feed URL contains a personal token. It is entered in the app's
 > **Settings → Subscriptions** screen and stored in SQLite (`calendars.source_url`),
 > never in the repo or env. The API only ever returns it masked
-> (`…feed.ics?token=a2dk••••`), and `data/` is git-ignored.
+> (`…feed.ics?token=abcd••••`), and `data/` is git-ignored.
 
 ---
 
