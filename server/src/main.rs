@@ -138,7 +138,7 @@ fn ev_row(r: &Row) -> rusqlite::Result<Ev> {
             "readonly": r.get::<_, String>(3)? == "ics",
             "title": r.get::<_, String>(4)?, "description": r.get::<_, String>(5)?,
             "location": r.get::<_, String>(6)?, "url": r.get::<_, Option<String>>(7)?,
-            "all_day": all_day, "start": start, "end": end, "kind": r.get::<_, String>(11)?,
+            "all_day": all_day, "start": start, "end": end, "series_start": start, "series_end": end, "kind": r.get::<_, String>(11)?,
             "course": r.get::<_, Option<String>>(12)?, "course_label": r.get::<_, Option<String>>(13)?,
             "rrule": rrule, "done": r.get::<_, bool>(15)?, "hidden": r.get::<_, bool>(16)?,
             "color_override": r.get::<_, Option<String>>(17)?, "note": r.get::<_, Option<String>>(18)?,
